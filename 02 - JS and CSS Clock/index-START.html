@@ -15,6 +15,7 @@
       </div>
     </div>
 
+    <button id = "test">test</button>
 
   <style>
     html {
@@ -64,10 +65,58 @@
       top: 50%;
     }
 
+    .second-hand{
+      transform-origin: right;
+    }
+
+    .min-hand{
+      transform-origin: right;
+    }
+     
+    .hour-hand{
+      transform-origin: right;
+    }
+
+
   </style>
 
   <script>
 
+    let currentAngle;
+    const secHand = document.querySelector('.second-hand');
+    const minHand = document.querySelector('.min-hand');
+    const hrHand = document.querySelector('.hour-hand');
+
+    //At 3'oclock, deg = 0/360
+    //At 6'oclock, deg = 270
+    //At 9'oclock, deg = 180
+    //At 12'oclock, deg = 90
+    
+    //Let's try a thought experiment, at 9:15am, what is the degree of each hand?
+    //Hour hand = 9/12 * 360 = 
+    //6 degrees per minute
+    //(15 min * 6 = 90 degrees)
+
+    function updateTime(){
+      let currentDate = new Date();
+      let secs = currentDate.getSeconds();
+      let mins = currentDate.getMinutes();
+      let hours = currentDate.getHours();
+      console.log(secs);
+      currentAngleSecs = Number.parseFloat(((secs/60) * 360)) + 90;
+      currentAngleMins = Number.parseFloat(((mins/60) * 360)) + 90;
+      currentAngleHours = Number.parseFloat(((((hours)/12) - 1) * 360)) + 90;
+      console.log(hours);
+    }
+
+    function updateClock(){
+      secHand.style.transform ="rotate(" + currentAngleSecs + "deg)";
+      minHand.style.transform ="rotate(" + currentAngleMins + "deg)";
+      hrHand.style.transform ="rotate(" + currentAngleHours + "deg)";
+    }
+
+    setInterval(updateTime,1000);
+    setInterval(updateClock, 1000);
 
   </script>
 </body>
