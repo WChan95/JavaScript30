@@ -102,11 +102,16 @@
       let secs = currentDate.getSeconds();
       let mins = currentDate.getMinutes();
       let hours = currentDate.getHours();
+      let minAddHour;
+      minAddHour = (mins/60) * 30;
       console.log(secs);
       currentAngleSecs = Number.parseFloat(((secs/60) * 360)) + 90;
       currentAngleMins = Number.parseFloat(((mins/60) * 360)) + 90;
-      currentAngleHours = Number.parseFloat(((((hours)/12) - 1) * 360)) + 90;
+      currentAngleHours = Number.parseFloat(((((hours)/12) - 1) * 360)) + minAddHour + 90;
       console.log(hours);
+
+
+
     }
 
     function updateClock(){
